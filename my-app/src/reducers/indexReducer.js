@@ -1,7 +1,7 @@
 export const todoList = {
     item: '',
     complted: false,
-    id: new Date()
+    
 };
 
 
@@ -11,7 +11,7 @@ export const todoReducer = (state = todoList, action) => {
         
         case 'ADD_TODO': 
             // add .map()
-            return { ...state, item: action.payload, completed: false };
+            return { ...state, item: action.payload, completed: false, id: new Date() };
         case 'TODO_COMPLETE': 
             // add toggle() & .map()
             return { ...state, item: action.payload, completed: toggleOn };
