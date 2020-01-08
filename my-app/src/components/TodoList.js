@@ -1,34 +1,15 @@
 import React, { useReducer } from 'react';
-import { todoReducer, todoList } from '../reducers/indexReducer';
-import AddTodo from './AddTodo';
+import { todoList, todoReducer } from '../reducers/indexReducer';
 import ClearComplete from './ClearComplete';
 
-const TodoList = props => {
+const TodoList = e => {
     const [state, dispatch] = useReducer(todoReducer, todoList);
-
-    // const handleChanges = e => {
-    //     setAddNew(e.target.value);
-    // };
-
-    // const clearComplete = () => { 
-    //     dispatch({ type: 'TODO_COMPLETE' });
-
-    // };
-
-    // const addNewTodo = () => {
-    //     dispatch({ type: 'ADD_TODO', payload: addNew });
-    // };
-
-return (
+    return (
     <div>
-       <h1>Todo Today</h1> 
-       <AddTodo dispatch={dispatch} />
-       {/* {state.map(item => {
-           return <ClearComplete key={item.id} item={item} dispatch={dispatch} />;
-       })} */}
-     </div>
-  );
-}
+      {state.map(todo => <ClearComplete key={todo.id} todo={todo} dispatch={dispatch} />)}
+   </div>
+  ); 
+};
 
 export default TodoList;         
            

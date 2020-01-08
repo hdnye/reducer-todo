@@ -1,10 +1,11 @@
 import React, { useState, useReducer} from 'react';
-import { todoList, todoRedcuer } from '../reducers/indexReducer';
+import { todoList, todoReducer } from '../reducers/indexReducer';
 import TodoList from './TodoList';
+// import { addNewTodo } from '../actions/indexActions';
 
-
-const AddTodo = ({ dispatch }) => {
+const AddTodo = e => {
     const [item, setItem] = useState('');
+    const [state, dispatch] = useReducer(todoReducer, todoList);
 
     const handleChanges = e => {
         e.preventDefault();
@@ -39,7 +40,7 @@ const AddTodo = ({ dispatch }) => {
                 onChange={(e => handleChanges(e))}
               /><br></br>
             <button type='submit'>Add New Todo</button><br></br>    
-            <button type='submit' onClick={() => dispatch({type: 'CLEAR_TODO'})}>Clear Completed</button>
+            <button type='submit' onClick={(e => dispatch({type: 'CLEAR_TODO'}))}>Clear Completed</button>
        </form>
    </div>
   ); 

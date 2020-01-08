@@ -1,7 +1,7 @@
 import React from 'react';
-// import { todoList } from '../reducers/indexReducer';
+import { clearTodo, todoComplete } from '../actions/indexActions';
 
-const ClearTodo = ({ item, dispatch }) => {
+const ClearComplete = ({ item, dispatch }) => {
     const toggleOn = () => {
         dispatch({
           type: 'TODO_COMPLETE',
@@ -18,4 +18,4 @@ const ClearTodo = ({ item, dispatch }) => {
     );
 };
 
-export default ClearTodo;
+export default ClearComplete;
