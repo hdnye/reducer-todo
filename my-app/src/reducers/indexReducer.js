@@ -1,4 +1,5 @@
-export const todoList = [
+export const todoList = {
+     todoList: [
    { 
     item: 'Shave the Cat',
     completed: false,
@@ -9,7 +10,7 @@ export const todoList = [
      completed: false,
      id: 393920   
     } 
-];
+  ]};
 
 
 export const todoReducer = (state = todoList, action) => {
@@ -18,7 +19,9 @@ export const todoReducer = (state = todoList, action) => {
         
         case 'ADD_TODO': 
             // add event handler
-            return { ...state, item: action.payload, completed: false, id: new Date() };
+            // return ({ ...state, item: action.payload });
+            console.log(action)
+            return { todoList: [...state.todoList, { item: action.payload, completed: false, id: new Date()  } ]};
         case 'TODO_COMPLETE': 
             // add toggle() & .map()
             return ({...state, item: action.payload, completed: true })

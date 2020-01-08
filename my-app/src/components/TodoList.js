@@ -4,9 +4,10 @@ import ClearComplete from './ClearComplete';
 
 const TodoList = e => {
     const [state, dispatch] = useReducer(todoReducer, todoList);
+    console.log(state.todoList);
     return (
     <div>
-      {state.map(todo => <ClearComplete key={todo.id} todo={todo} dispatch={dispatch} />)}
+      {state.todoList.map(item => <ClearComplete key={item.id} item={item} dispatch={dispatch} />)}
    </div>
   ); 
 };

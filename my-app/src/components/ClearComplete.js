@@ -10,11 +10,12 @@ const ClearComplete = ({ item, dispatch }) => {
     };
 
     return (
-    <div onClick={toggleOn}
-        className={`item${item.completed ? 'completed': ''}`}
-        style={{ textDecoration: item.completed ? 'line-through' : ''}} >      
-      <p>{item.name}</p>   
-    </div>
+        <div onClick={() => dispatch({type: 'TODO_COMPLETE', payload: item.id})}
+            className={`item${item.completed ? 'completed': ''}`}
+            style={{ textDecoration: item.completed ? 'line-through' : ''}}
+          >   
+        {item.item}   
+        </div>
     );
 };
 
