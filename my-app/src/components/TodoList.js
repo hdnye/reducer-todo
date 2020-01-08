@@ -1,49 +1,38 @@
-import React, { useState, useReducer } from 'react';
-import { todoReducer, todoList } from '../reducers';
+import React, { useReducer } from 'react';
+import { todoReducer, todoList } from '../reducers/indexReducer';
+import AddTodo from './AddTodo';
+import ClearComplete from './ClearComplete';
 
-const TodoList = () => {
-    const [addNew, setAddNew] = useState('');
-
+const TodoList = props => {
     const [state, dispatch] = useReducer(todoReducer, todoList);
 
-    const handleChanges = e => {
-        setAddNew(e.target.value);
-    };
+    // const handleChanges = e => {
+    //     setAddNew(e.target.value);
+    // };
 
-    const clearComplete = () => { 
-        dispatch({ type: 'TODO_COMPLETE' });
+    // const clearComplete = () => { 
+    //     dispatch({ type: 'TODO_COMPLETE' });
 
-    };
+    // };
 
-    const addNewTodo = () => {
-        dispatch({ type: 'ADD_TODO', payload: addNew });
-    };
+    // const addNewTodo = () => {
+    //     dispatch({ type: 'ADD_TODO', payload: addNew });
+    // };
 
 return (
     <div>
-       {state.new} ? (
-          <div>
-            <input className='add-new'
-                type='text'
-                name='Add New'
-                value={addNew}
-                onChange={handleChanges}
-             />   
-         <button onClick={addNewTodo}>Add New Todo</button>          
-
-       ) : (
-           <hi>Todo Today</hi>
-           
-           
-           
-         <button onClick={clearComplete}>Done!</button>  
-     )     
-        </div> 
-       ) 
-    </div>
-  )
+       <h1>Todo Today</h1> 
+       <AddTodo dispatch={dispatch} />
+       {/* {state.map(item => {
+           return <ClearComplete key={item.id} item={item} dispatch={dispatch} />;
+       })} */}
+     </div>
+  );
 }
 
-export default TodoList;           
+export default TodoList;         
+           
+           
+      
               
   

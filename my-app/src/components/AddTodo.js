@@ -1,39 +1,49 @@
-import React from 'react';
+import React, { useState, useReducer} from 'react';
+import { todoList, todoRedcuer } from '../reducers/indexReducer';
+import TodoList from './TodoList';
 
-class AddTodo extends React.Component {
-    constructor(props) {
-        super(props);
-           this.state = {
-               item: ''
-      };
+
+const AddTodo = ({ dispatch }) => {
+    const [item, setItem] = useState('');
+
+    const handleChanges = e => {
+        e.preventDefault();
+        setItem(e.target.value);
     }
 
-  changeHandler = e => {
-      this.setState({ item: e.target.value });
-  };  
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch({
+            type: 'ADD_TODO',
+            payload: item
+        });
+        setItem('');
+    }
 
-  submitHandler = e => {
-      e.preventDefault();
-      this.props.addTodo(this.state.item);
-      this.setState({ item: '' });
-  }
+    // const clearCompleted = e => {
+    //     e.preventDefault();
+    //     dispatch({
+    //         type: 'TODO_COMPLETE',            
+    //     });
+    // };
 
-  render() {
-      return (
-        <form onSubmit={this.submitHandler}>
-            <label htmlFor='item'></label>
-                <input className='new_todo'
-                    type='text'
-                    name='item'
-                    placeholder='Add New Todo'
-                    value={this.state.item}
-                    onChange={this.changeHandler}
-                />  
-            <button type='submit' >Add New</button>
-         </form>
-     );
-  }
-}; 
+ return (
+     <div>
+         <form onSubmit={(e => handleSubmit(e))}>
+            <label htmlFor='todo'></label>
+              <input className='add-todo'
+                type='text'
+                name='todo'
+                placeholder='New Todo'
+                value={item}
+                onChange={(e => handleChanges(e))}
+              /><br></br>
+            <button type='submit'>Add New Todo</button><br></br>    
+            <button type='submit' onClick={() => dispatch({type: 'CLEAR_TODO'})}>Clear Completed</button>
+       </form>
+   </div>
+  ); 
+};  
 
 export default AddTodo;
      
